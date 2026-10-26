@@ -1,22 +1,24 @@
 :root {
-  /* Colour */
-  /* --color-bg: #fbfaf7; */
-  --color-bg: #fff;
-  --color-bg-soft: #f2f0ea;
+  /* Colour — forest green / mint palette */
+  --color-bg: #f5faf7;
+  --color-bg-soft: #e9f3ee;
   --color-surface: #ffffff;
-  --color-ink: #13202b;
-  --color-body: #34424e;
-  --color-muted: #6a7682;
-  --color-border: #e4e1d8;
-  --color-border-strong: #d6d2c6;
-  --color-brand: #0b5d47;
-  --color-brand-dark: #08453a;
-  --color-brand-soft: #e5f1ec;
-  --color-accent: #c8902c;
+  --color-ink: #0c2a22;
+  --color-body: #35473f;
+  --color-muted: #64786f;
+  --color-border: #d8e6de;
+  --color-border-strong: #c4d8cd;
+  --color-brand: #2e7d5b;
+  --color-brand-dark: #185447;
+  --color-brand-soft: #e3f2ea;
+  /* Filled buttons keep the solid brand green in both themes. */
+  --color-brand-fill: #2e7d5b;
+  --color-brand-fill-hover: #185447;
+  --color-accent: #83d4ab;
 
   /* Component-specific surfaces */
   --header-glass: rgba(255, 255, 255, 0.88);
-  --color-skeleton: #ebe8e0;
+  --color-skeleton: #e7f0ea;
 
   /* Type — iOS system font stack (SF Pro / San Francisco on Apple devices) */
   --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', 'Segoe UI', system-ui, Roboto, sans-serif;
@@ -27,9 +29,9 @@
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(19, 32, 43, 0.06);
-  --shadow-md: 0 8px 24px -12px rgba(19, 32, 43, 0.18);
-  --shadow-lg: 0 24px 60px -20px rgba(10, 20, 30, 0.45);
+  --shadow-sm: 0 1px 2px rgba(12, 42, 34, 0.06);
+  --shadow-md: 0 8px 24px -12px rgba(12, 42, 34, 0.18);
+  --shadow-lg: 0 24px 60px -20px rgba(7, 26, 20, 0.45);
 
   /* Layout */
   --container: 1200px;
@@ -37,29 +39,31 @@
   --header-h: 64px;
 }
 
-/* ---------- Dark theme: professional deep-navy blue ---------- */
+/* ---------- Dark theme: deep forest green with mint accents ---------- */
 html[data-theme='dark'] {
   color-scheme: dark;
 
-  --color-bg: #0a1626;
-  --color-bg-soft: #0e1e33;
-  --color-surface: #122238;
-  --color-ink: #e8eef7;
-  --color-body: #b4c2d3;
-  --color-muted: #7e8ea3;
-  --color-border: #223753;
-  --color-border-strong: #2c4468;
-  --color-brand: #3f8cff;
-  --color-brand-dark: #1f6fe5;
-  --color-brand-soft: #12294a;
-  --color-accent: #d9a441;
+  --color-bg: #0b1f1a;
+  --color-bg-soft: #0d241e;
+  --color-surface: #102b24;
+  --color-ink: #ffffff;
+  --color-body: #b4c2bc;
+  --color-muted: #8a9a94;
+  --color-border: #1e3f34;
+  --color-border-strong: #2c5446;
+  --color-brand: #83d4ab;
+  --color-brand-dark: #5cbd90;
+  --color-brand-soft: #123c32;
+  --color-brand-fill: #2e7d5b;
+  --color-brand-fill-hover: #38966d;
+  --color-accent: #83d4ab;
 
-  --header-glass: rgba(13, 26, 45, 0.82);
-  --color-skeleton: #1a2c47;
+  --header-glass: rgba(11, 31, 26, 0.82);
+  --color-skeleton: #14342c;
 
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 8px 24px -12px rgba(0, 0, 0, 0.6);
-  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.75);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 8px 24px -12px rgba(0, 0, 0, 0.65);
+  --shadow-lg: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
 }
 
 @media (min-width: 768px) {
@@ -92,6 +96,16 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+/* Soft green glows behind the page, echoing the dark app shell. */
+html[data-theme='dark'] body {
+  background-image:
+    radial-gradient(circle at 16% 4%, rgba(46, 125, 91, 0.26), transparent 44%),
+    radial-gradient(circle at 84% 0%, rgba(18, 60, 50, 0.55), transparent 40%),
+    radial-gradient(circle at 50% 104%, rgba(24, 84, 71, 0.22), transparent 55%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 h1,
@@ -183,12 +197,12 @@ button {
 }
 
 .btn--primary {
-  background: var(--color-brand);
+  background: var(--color-brand-fill);
   color: #fff;
 }
 
 .btn--primary:hover {
-  background: var(--color-brand-dark);
+  background: var(--color-brand-fill-hover);
 }
 
 .btn--ghost {

@@ -4,7 +4,7 @@
 
 .DESCRIPTION
   The default Open Graph image carries the brand: the deep-green gradient and dot
-  grid are drawn with GDI+, while the FinzoriaFinance logo itself is rasterised from
+  grid are drawn with GDI+, while the FinanceQuizApp logo itself is rasterised from
   public\favicon.svg (the single source of truth for the mark) using headless Edge,
   so the card can never drift away from the logo used in the header.
 
@@ -21,8 +21,8 @@ $root = Resolve-Path (Join-Path $PSScriptRoot '..')
 $outFile = Join-Path $root 'public\images\og\og-default.png'
 $logoSvg = Join-Path $root 'public\favicon.svg'
 
-$brandName  = 'Finzoria'
-$brandTail  = 'Finance'
+$brandName  = 'Finance'
+$brandTail  = 'QuizApp'
 $tagline    = 'Clear, practical money education'
 
 $w = 1200
@@ -38,19 +38,30 @@ if (-not $edge) {
   throw 'Microsoft Edge was not found — it is used to rasterise favicon.svg into the OG card.'
 }
 
-$workDir = Join-Path ([System.IO.Path]::GetTempPath()) ("ff-og-" + [guid]::NewGuid().ToString('N'))
+$workDir = Join-Path $root ('.tmp-og-' + [guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Force -Path $workDir | Out-Null
 $logoPng = Join-Path $workDir 'logo.png'
 
 try {
+  # AbsoluteUri percent-encodes spaces in the project path, which Edge needs.
+  $logoUri = ([System.Uri]$logoSvg).AbsoluteUri
   $edgeArgs = @(
     '--headless=new', '--disable-gpu', '--hide-scrollbars', '--no-first-run',
     '--window-size=512,512', '--default-background-color=00000000',
     '--virtual-time-budget=2000',
     "--screenshot=$logoPng",
-    "file:///$($logoSvg.Replace('\', '/'))"
+    $logoUri
   )
-  Start-Process -FilePath $edge -ArgumentList $edgeArgs -Wait -NoNewWindow
+  # Array splatting lets PowerShell quote the screenshot path (it contains spaces).
+  # Edge writes harmless task-manager noise to stderr, which would otherwise
+  # abort under $ErrorActionPreference = 'Stop'.
+  $previousEap = $ErrorActionPreference
+  $ErrorActionPreference = 'SilentlyContinue'
+  & $edge @edgeArgs 2>&1 | Out-Null
+  $ErrorActionPreference = $previousEap
+  # msedge.exe hands off to a child process and exits, so wait for the file itself.
+  $deadline = (Get-Date).AddSeconds(15)
+  while (-not (Test-Path $logoPng) -and (Get-Date) -lt $deadline) { Start-Sleep -Milliseconds 300 }
   if (-not (Test-Path $logoPng)) { throw "Edge did not produce $logoPng" }
 
   # --- Draw the card ------------------------------------------------------------
@@ -63,8 +74,8 @@ try {
   # Background: brand gradient + dot grid + soft light circles.
   $bgBrush = New-Object System.Drawing.Drawing2D.LinearGradientBrush(
     (New-Object System.Drawing.Rectangle(0, 0, $w, $h)),
-    [System.Drawing.Color]::FromArgb(17, 138, 107),
-    [System.Drawing.Color]::FromArgb(6, 64, 47),
+    [System.Drawing.Color]::FromArgb(46, 125, 91),
+    [System.Drawing.Color]::FromArgb(11, 31, 26),
     [System.Drawing.Drawing2D.LinearGradientMode]::ForwardDiagonal
   )
   $g.FillRectangle($bgBrush, 0, 0, $w, $h)
@@ -88,7 +99,7 @@ try {
   $g.DrawImage($logo, [single]$markX, [single]$markY, [single]$markSize, [single]$markSize)
   $logo.Dispose()
 
-  # Wordmark: "Finzoria" in white, "Finance" in the logo gold — joined, no space.
+  # Wordmark: "Finance" in white, "QuizApp" in the accent mint — joined, no space.
   $titleFont = New-Object System.Drawing.Font('Segoe UI', 92, [System.Drawing.FontStyle]::Bold, [System.Drawing.GraphicsUnit]::Pixel)
   $nameSize = $g.MeasureString($brandName, $titleFont)
   $tailSize = $g.MeasureString($brandTail, $titleFont)
@@ -99,10 +110,10 @@ try {
   $titleX = ($w - ($fullNameSize.Width - $trailing)) / 2
 
   $g.DrawString($brandName, $titleFont, (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::White)), [single]$titleX, [single]$titleY)
-  $g.DrawString($brandTail, $titleFont, (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(255, 201, 40))), [single]($titleX + $fullNameSize.Width - $tailSize.Width), [single]$titleY)
+  $g.DrawString($brandTail, $titleFont, (New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(131, 212, 171))), [single]($titleX + $fullNameSize.Width - $tailSize.Width), [single]$titleY)
 
   $tagFont = New-Object System.Drawing.Font('Segoe UI', 34, [System.Drawing.FontStyle]::Regular, [System.Drawing.GraphicsUnit]::Pixel)
-  $tagBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(214, 207, 232, 221))
+  $tagBrush = New-Object System.Drawing.SolidBrush([System.Drawing.Color]::FromArgb(214, 180, 194, 188))
   $tagSize = $g.MeasureString($tagline, $tagFont)
   $g.DrawString($tagline, $tagFont, $tagBrush, [single](($w - $tagSize.Width) / 2 + 8), [single]($titleY + $nameSize.Height + 6))
 

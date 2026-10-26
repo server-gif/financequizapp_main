@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="FinzoriaFinance">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675" role="img" aria-label="FinanceQuizApp">
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0b5d47"/><stop offset="1" stop-color="#14876a"/></linearGradient>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2e7d5b"/><stop offset="1" stop-color="#0b1f1a"/></linearGradient>
   <linearGradient id="lgTile" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#10C9A0"/><stop offset="0.55" stop-color="#008F70"/><stop offset="1" stop-color="#005642"/></linearGradient>
   <linearGradient id="lgMint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B8FF9B"/><stop offset="1" stop-color="#32D889"/></linearGradient>
   <linearGradient id="lgWhiteMint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A5FFD9"/></linearGradient>

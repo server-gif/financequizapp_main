@@ -1,8 +1,8 @@
 export const SITE = {
-  name: 'FinzoriaFinance',
+  name: 'FinanceQuizApp',
   tagline: 'Clear, practical money education',
   description:
-    'FinzoriaFinance explains personal finance, saving, investing, banking and the economy in plain language — educational guides for everyday financial decisions.',
+    'FinanceQuizApp explains personal finance, saving, investing, banking and the economy in plain language — educational guides for everyday financial decisions.',
   /** Used to build canonical and Open Graph URLs. Set VITE_SITE_URL in production. */
   url: (import.meta.env.VITE_SITE_URL || 'https://financequizapp.com').replace(/\/$/, ''),
   defaultImage: '/images/og/og-default.png',

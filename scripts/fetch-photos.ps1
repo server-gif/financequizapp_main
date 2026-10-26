@@ -3,10 +3,10 @@
   Downloads the 14 article photographs into public\images\photos\.
 
 .DESCRIPTION
-  FinzoriaFinance article images are real photographs used under the Pexels Licence:
+  FinanceQuizApp article images are real photographs used under the Pexels Licence:
   free for commercial use, no attribution required (https://www.pexels.com/license/).
   Copyright stays with each photographer, so the Terms page deliberately does not
-  describe photographs as FinzoriaFinance work.
+  describe photographs as FinanceQuizApp work.
 
   Files are self-hosted rather than hot-linked, so a removed or renamed upstream
   file can never break the live site.
@@ -40,20 +40,20 @@ $dest = Join-Path $root 'public\images\photos'
 # slug => Pexels photo id. This table is the single source of truth; src/data
 # and src/config never name a third-party image URL themselves.
 $photos = [ordered]@{
-  'how-compound-interest-works'          = 11391951
-  'beginners-guide-to-investing'         = 5716016
-  'how-to-build-an-emergency-fund'       = 7010128
-  'smart-ways-to-save-money'             = 1602726
-  'understanding-mutual-funds'           = 730564
-  'what-is-a-credit-score'               = 19867473
-  'how-to-create-a-monthly-budget'       = 4386339
-  'stock-market-basics-for-beginners'    = 6770610
-  'how-inflation-affects-your-money'     = 4971967
-  'financial-planning-for-young-adults'  = 6963046
-  'how-to-use-credit-cards-responsibly'  = 5239818
-  'understanding-loans-and-interest-rates' = 8293750
-  'tax-basics-everyone-should-know'      = 6863337
-  'how-small-businesses-manage-cash-flow' = 4921267
+  'retirement-savings-roadmap'                = 7075061
+  'real-estate-vs-stocks-first-investment'    = 210617
+  'education-debt-repayment-plan'              = 6559598
+  'passive-income-streams-reality-check'      = 3861958
+  'etf-vs-mutual-fund-which-wins'            = 7943016
+  'emi-structures-smart-borrowing'            = 4978884
+  'freelancer-irregular-income-playbook'      = 3861972
+  'cryptocurrency-explained-simply'           = 28906033
+  'recession-proofing-your-household'         = 590020
+  'health-insurance-right-coverage'           = 4075769
+  'online-payment-security-essentials'        = 28841475
+  'fixed-income-options-compared'             = 7664577
+  'estate-planning-starting-early'            = 8290404
+  'gig-economy-tax-and-growth'                = 4392042
 }
 
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
