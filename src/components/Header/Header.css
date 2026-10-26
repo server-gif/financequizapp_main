@@ -68,7 +68,7 @@
   place-items: center;
   width: 35px;
   height: 35px;
-  border: none;
+  border: 1px solid var(--color-border);
   border-radius: 50%;
   background: var(--color-bg-soft);
   color: var(--color-ink);
@@ -79,6 +79,7 @@
 
 .header__theme:hover {
   color: var(--color-brand);
+  background: var(--color-brand-soft);
   border-color: var(--color-brand);
   transform: rotate(18deg) scale(1.06);
 }

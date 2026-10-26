@@ -147,7 +147,7 @@
   font-size: 0.8125rem;
   font-weight: 500;
   color: var(--color-ink);
-  background: #ffffff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 999px;
 }
@@ -172,14 +172,14 @@
 
 .hero__btn--primary {
   color: #ffffff;
-  background: var(--color-brand-fill);
+  background: var(--btn-bg);
   border: 1.5px solid var(--color-ink);
   box-shadow: 4px 4px 0 var(--color-ink);
 }
 
 .hero__btn--primary:hover {
   color: #ffffff;
-  background: var(--color-brand-fill-hover);
+  background: var(--btn-bg-hover);
   transform: translate(-2px, -2px);
   box-shadow: 6px 6px 0 var(--color-ink);
 }
@@ -241,7 +241,7 @@
   width: 300px;
   padding: 18px 18px 12px;
   color: var(--color-brand);
-  background: #ffffff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
@@ -295,7 +295,7 @@
 }
 
 .hero__chart-dot {
-  fill: #ffffff;
+  fill: var(--color-surface);
   stroke: currentColor;
   stroke-width: 2.5;
   opacity: 0;
@@ -358,7 +358,7 @@
   font-weight: 700;
   color: #ffffff;
   background: var(--color-brand-fill);
-  border: 2px solid #ffffff;
+  border: 2px solid var(--color-surface);
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(18, 60, 50, 0.3);
 }
@@ -528,25 +528,12 @@ html[data-theme='dark'] .hero__tag {
   border-color: rgba(131, 212, 171, 0.32);
 }
 
-html[data-theme='dark'] .hero__topic,
-html[data-theme='dark'] .hero__panel {
-  background: var(--color-surface);
-}
-
 html[data-theme='dark'] .hero__panel-badge {
   background: rgba(131, 212, 171, 0.16);
 }
 
-html[data-theme='dark'] .hero__chart-dot {
-  fill: var(--color-surface);
-}
-
 html[data-theme='dark'] .hero__card {
   background: rgba(16, 43, 36, 0.92);
-}
-
-html[data-theme='dark'] .hero__card-num {
-  border-color: var(--color-surface);
 }
 
 /* Hard offset shadow reads as white-on-cream in light; keep it green on dark. */

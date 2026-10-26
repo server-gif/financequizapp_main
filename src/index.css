@@ -1,20 +1,28 @@
 :root {
-  /* Colour — forest green / mint palette */
+  /* Colour — forest green / mint palette, the same tokens the live
+     financequizapp.com quiz runs on. */
   --color-bg: #f5faf7;
   --color-bg-soft: #e9f3ee;
   --color-surface: #ffffff;
   --color-ink: #0c2a22;
   --color-body: #35473f;
   --color-muted: #64786f;
-  --color-border: #d8e6de;
-  --color-border-strong: #c4d8cd;
+  --color-border: #cfe4d8;
+  --color-border-strong: #b5d6c4;
   --color-brand: #2e7d5b;
   --color-brand-dark: #185447;
   --color-brand-soft: #e3f2ea;
+  /* Mid mint, straight from the reference border/shadow tints. */
+  --color-mint: #4faf7d;
   /* Filled buttons keep the solid brand green in both themes. */
   --color-brand-fill: #2e7d5b;
   --color-brand-fill-hover: #185447;
   --color-accent: #83d4ab;
+
+  /* Hero CTA fill — diagonal forest gradient with a mint hairline.
+     The raised 3D edge stays as it was; only these two colours vary by theme. */
+  --btn-bg: linear-gradient(145deg, #185447, #2e7d5b);
+  --btn-bg-hover: linear-gradient(145deg, #123c32, #1f6a52);
 
   /* Component-specific surfaces */
   --header-glass: rgba(255, 255, 255, 0.88);
@@ -48,15 +56,20 @@ html[data-theme='dark'] {
   --color-surface: #102b24;
   --color-ink: #ffffff;
   --color-body: #b4c2bc;
-  --color-muted: #8a9a94;
-  --color-border: #1e3f34;
-  --color-border-strong: #2c5446;
+  --color-muted: #a09e9e;
+  --color-border: rgba(79, 175, 125, 0.22);
+  --color-border-strong: rgba(79, 175, 125, 0.42);
   --color-brand: #83d4ab;
   --color-brand-dark: #5cbd90;
   --color-brand-soft: #123c32;
+  --color-mint: #4faf7d;
   --color-brand-fill: #2e7d5b;
   --color-brand-fill-hover: #38966d;
   --color-accent: #83d4ab;
+
+  /* Hero CTA gradient: surface green into deep brand. */
+  --btn-bg: linear-gradient(145deg, #102b24, #185447);
+  --btn-bg-hover: linear-gradient(145deg, #185447, #2e7d5b);
 
   --header-glass: rgba(11, 31, 26, 0.82);
   --color-skeleton: #14342c;
